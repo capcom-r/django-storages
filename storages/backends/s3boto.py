@@ -483,7 +483,7 @@ class S3BotoStorage(Storage):
             entry = self.bucket.get_key(self._encode_name(name))
         # Parse the last_modified string to a local datetime object.
         # return parse_ts(entry.last_modified)
-        modified = timezone.datetime.strptime(str(entry.last_modified), '%Y-%m-%dT%H:%M:%S.000Z')
+        modified = timezone.datetime.strptime(str(entry.last_modified), '%a, %d %b %Y %H:%M:%S %Z')
         modified += timezone.timedelta(hours=time.localtime().tm_gmtoff / 3600)
         return modified
 
